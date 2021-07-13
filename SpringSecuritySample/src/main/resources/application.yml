@@ -1,0 +1,14 @@
+spring:
+  # database config
+  datasource:
+    url: jdbc:mysql://localhost:3306/security?autoReconnect=true&useSSL=false
+    username: sample
+    password: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # jpa config
+  jpa:
+    show-sql: true
+
+logging:
+  level:
+    '[org.hibernate]': info
