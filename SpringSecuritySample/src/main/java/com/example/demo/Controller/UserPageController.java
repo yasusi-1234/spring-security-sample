@@ -1,0 +1,14 @@
+package com.example.demo.Controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class UserPageController {
+
+	@GetMapping("/userPage")
+//	@PreAuthorize("hasRole('ROLE_USER')") // (1) ROLE_USERのユーザのみアクセスを許可
+	public String userPage() {
+		return "userPage";
+	}
+}

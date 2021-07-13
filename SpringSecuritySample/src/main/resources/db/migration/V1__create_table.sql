@@ -1,8 +1,16 @@
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS access_authorization;
 
 CREATE TABLE IF NOT EXISTS users(
 	username VARCHAR(50) NOT NULL PRIMARY KEY,
 	password VARCHAR(255) NOT NULL,
 	name VARCHAR(255) NOT NULL,
 	rolename VARCHAR(24) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS access_authorization(
+	access_id int NOT NULL AUTO_INCREMENT,
+	rolename VARCHAR(10) NOT NULL,
+	uri VARCHAR(255) NOT NULL,
+	PRIMARY KEY(access_id)
 );
