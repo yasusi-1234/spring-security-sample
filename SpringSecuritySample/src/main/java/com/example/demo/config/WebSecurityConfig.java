@@ -76,7 +76,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// ログアウト設定
 		http.logout().logoutSuccessUrl("/loginForm") // --- (13) ログアウト成功時に遷移するパス
-				.permitAll(); // --- (14) 全ユーザに対してアクセスを許可
+				.permitAll() // --- (14) 全ユーザに対してアクセスを許可
+				.invalidateHttpSession(true) // HTTPSessionの破棄
+				.deleteCookies("JSESSIONID"); // cookieからJsessionIDの破棄
 
 	}
 
