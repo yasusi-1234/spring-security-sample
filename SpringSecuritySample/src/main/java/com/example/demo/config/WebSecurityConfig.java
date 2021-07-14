@@ -51,7 +51,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// AuthenticationManagerBuilderに、実装したUserDetailsServiceを設定する
-		auth.userDetailsService(accountUserDetailsService) // --- (3) 作成したUserDetailsServiceを設定
+		auth.eraseCredentials(true) // UserDetails側で設定したeraseCredentials()を実行するかしないかの設定
+				// このメソッドを省略した場合はtrueの設定と同義
+				.userDetailsService(accountUserDetailsService) // --- (3) 作成したUserDetailsServiceを設定
 				.passwordEncoder(passwordEncoder()); // --- (2) パスワードのハッシュ化方法を指定(BCryptアルゴリズム)
 	}
 
@@ -71,7 +73,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/authenticate") // --- (8) フォーム認証処理のパス
 				.usernameParameter("userName") // --- (9) ユーザ名のリクエストパラメータ名
 				.passwordParameter("password") // --- (10) パスワードのリクエストパラメータ名
-				.defaultSuccessUrl("/home") // --- (11) 認証成功時に遷移するデフォルトのパス
+				/*
+				 * 第二引数をtrueにすると、必ず第一引数のページへ遷移 第二引数がfalseの場合、 直前に指定されていたページへ遷移
+				 */
+				.defaultSuccessUrl("/home", false) // --- (11) 認証成功時に遷移するデフォルトのパス
 				.failureUrl("/loginForm?error=true"); // --- (12) 認証失敗時に遷移するパス
 
 		// ログアウト設定
