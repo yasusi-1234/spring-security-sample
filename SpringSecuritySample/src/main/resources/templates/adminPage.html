@@ -21,10 +21,16 @@
             <td><span sec:authentication="principal.name"></span></td> <!-- (2) 名前を表示 -->
         </tr>
         <tr>
+            <td>Password</td>
+            <td><span sec:authentication="principal.password"></span></td> <!-- (2) 名前を表示 -->
+        </tr>
+        <tr>
             <td>Role</td>
             <td><span sec:authentication="principal.authorities"></span></td> <!-- (3) Roleを表示 -->
         </tr>
     </table>
+    
+    <span sec:authentication="principal.user"></span>
 
     <form method="get" th:action="@{/home}">
         <input type="submit" value="Homeへ">
